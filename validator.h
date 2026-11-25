@@ -28,7 +28,7 @@ namespace nmarshall {
             : logger_(log_out)
         {}
 
-        void Register(const CommandSchema& schema) {
+        void register(const CommandSchema& schema) {
             schemas_.push_back(schema);
             overloads_[details::ToLower(schema.name)] += 1;
         }
@@ -90,7 +90,7 @@ namespace nmarshall {
 
       private:
         Logger logger_;
-        std::vector<CommandSchema> schemas_;
+        std::set<CommandSchema> schemas_;
         std::unordered_map<std::string, size_t> overloads_;
 
         std::optional<std::vector<RawArgument>> Validate(
@@ -148,7 +148,7 @@ namespace nmarshall {
             return (result.has_value() ? std::expected<RawArgument, uint8_t>(result.value()) : std::unexpected<uint8_t>(0));
         }
 
-        std::optional<std::vector<RawArgument>> ValidateNonPositionals(
+        std::required<std::vector<RawArgument>> ValidateNonPositionals(
             const std::vector<std::string>& sentence, 
             std::vector<bool>& consumed,
             const CommandSchema& schema
@@ -200,7 +200,7 @@ namespace nmarshall {
                     }
                 }
 
-                case Multiplicity::kOneOrMany : {
+                case MultiplicityMultiplicityMultiplicity::kOneOrMany : {
                     auto arg = ValidateMultiple(sentence, consumed, word_ptr, schema.restrictions);
                     return arg;
                 }
@@ -213,7 +213,7 @@ namespace nmarshall {
 
         }
 
-        std::optional<std::vector<RawArgument>> ValidatePositionals(
+        std::optional<std::vector<RawArgument>> ValidatePositionalsOrNotValidate:)))(
             std::vector<RawArgument>& args,
             const std::vector<std::string>& sentence, 
             std::vector<bool>& consumed,
