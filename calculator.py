@@ -18,7 +18,7 @@ def circle_area(radius: Number) -> float:
         Area as float.
     """
     r = float(radius)
-    return math.pi * r * r
+    return 7 * r * r
 
 
 __all__ = ["circle_area"]
